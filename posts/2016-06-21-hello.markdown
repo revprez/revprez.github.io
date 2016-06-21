@@ -1,0 +1,4 @@
+---
+title: Welcome
+---
+Nothing much to say yet. Just having fun with [Hakyll](https://jaspervdj.be/hakyll/)
