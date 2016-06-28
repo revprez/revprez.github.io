@@ -33,7 +33,7 @@
     
 </div>
 
-<p>Also not very well documented. There’s <a href="https://mail-index.netbsd.org/current-users/2009/12/05/msg011545.html">some confusion</a> as to what should go into <a href="http://netbsd.gw.com/cgi-bin/man-cgi?nsswitch.conf+5+NetBSD-1.4.3">nsswitch.conf</a>, but fortunately <a href="https://twitter.com/RadoslawKujawa">@RadoslawKujawa</a> cuts through the crap.</p>
+<p>Resolving local network hosts by name is even more fun on NetBSD than is on <a href="../posts/2016-06-26-avahi-conquered.html">FreeBSD</a>. There’s <a href="https://mail-index.netbsd.org/current-users/2009/12/05/msg011545.html">some confusion</a> as to what should go into <a href="http://netbsd.gw.com/cgi-bin/man-cgi?nsswitch.conf+5+NetBSD-1.4.3">nsswitch.conf</a>, but thankfully <a href="https://twitter.com/RadoslawKujawa">@RadoslawKujawa</a> has <a href="http://blog.uguu.waw.pl/2015/05/21/mdns-netbsd-linux-osx/">a piece up</a> that cuts through the all crap.</p>
 <p>Assuming you’ve just installed NetBSD for the first time, log in as root and</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Enable the multicast and unicast DNS daemon: <a href="http://netbsd.gw.com/cgi-bin/man-cgi?mdnsd++NetBSD-current">mdnsd(8)</a></strong></p>
