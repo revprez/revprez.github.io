@@ -1,5 +1,5 @@
 ---
-title: mDNS on a clean NetBSD 7.0.1 install
+title: mDNS on a fresh NetBSD 7.0.1 install
 ---
 
 
