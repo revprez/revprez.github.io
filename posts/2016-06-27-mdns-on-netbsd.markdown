@@ -2,7 +2,8 @@
 title: mDNS on a clean NetBSD 7.0.1 install
 ---
 
-Also not very well documented.  There's [some confusion](https://mail-index.netbsd.org/current-users/2009/12/05/msg011545.html) as to what should go into [nsswitch.conf](http://netbsd.gw.com/cgi-bin/man-cgi?nsswitch.conf+5+NetBSD-1.4.3), but fortunately [\@RadoslawKujawa](https://twitter.com/RadoslawKujawa) cuts through the crap.  
+
+Resolving local network hosts by name is even more fun on NetBSD than is on [FreeBSD](/posts/2016-06-26-avahi-conquered.html).  There's [some confusion](https://mail-index.netbsd.org/current-users/2009/12/05/msg011545.html) as to what should go into [nsswitch.conf](http://netbsd.gw.com/cgi-bin/man-cgi?nsswitch.conf+5+NetBSD-1.4.3), but thankfully [\@RadoslawKujawa](https://twitter.com/RadoslawKujawa) has [a piece up](http://blog.uguu.waw.pl/2015/05/21/mdns-netbsd-linux-osx/) that cuts through the all crap.
 
 Assuming you've just installed NetBSD for the first time, log in as root and
 
