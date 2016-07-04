@@ -25,5 +25,5 @@ Assuming you've just installed NetBSD for the first time, log in as root and
 1. **Test**
     ```
     $ getent hosts <another mdns responding host on your lan>.local
-    $ ping another mdns responding host on your lan>.local
+    $ ping <another mdns responding host on your lan>.local
     ```
