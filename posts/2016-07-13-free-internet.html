@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Prez Cannady - mDNS on a fresh NetBSD 7.0.1 install</title>
+        <title>Prez Cannady - Free access to the Internet as a consequence of its infrastructure.</title>
         <link rel="stylesheet" type="text/css" href="../css/default.css" />
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@prezcannady">
@@ -27,26 +27,20 @@
         </div>
 
         <div id="content">
-            <h1>mDNS on a fresh NetBSD 7.0.1 install</h1>
+            <h1>Free access to the Internet as a consequence of its infrastructure.</h1>
 
             <div class="info">
-    Posted on June 27, 2016
+    Posted on July 13, 2016
     
 </div>
 
-<p>Resolving local network hosts by name is even more fun on NetBSD than is on <a href="../posts/2016-06-26-avahi-conquered.html">FreeBSD</a>. There’s <a href="https://mail-index.netbsd.org/current-users/2009/12/05/msg011545.html">some confusion</a> as to what should go into <a href="http://netbsd.gw.com/cgi-bin/man-cgi?nsswitch.conf+5+NetBSD-1.4.3">nsswitch.conf</a>, but thankfully <a href="https://twitter.com/RadoslawKujawa">@RadoslawKujawa</a> has <a href="http://blog.uguu.waw.pl/2015/05/21/mdns-netbsd-linux-osx/">a piece up</a> that cuts through the all crap.</p>
-<p>Assuming you’ve just installed NetBSD for the first time, log in as root and</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Enable the multicast and unicast DNS daemon: <a href="http://netbsd.gw.com/cgi-bin/man-cgi?mdnsd++NetBSD-current">mdnsd(8)</a></strong></p>
-<pre><code>$ echo &quot;mdnsd=YES&quot; &gt;&gt; /etc/rc.conf </code></pre></li>
-<li><p><strong>Add a source named “msdnsd” to the hosts database in <a href="http://netbsd.gw.com/cgi-bin/man-cgi?nsswitch.conf++NetBSD-current">nsswitch.conf(5)</a></strong></p>
-<pre><code>$ sed 's|^\(hosts.*\)files dns|\1files dns mdnsd|g' /etc/nsswitch.conf</code></pre></li>
-<li><p><strong>Restart <a href="http://netbsd.gw.com/cgi-bin/man-cgi?mdnsd++NetBSD-current">mdnsd(8)</a></strong></p>
-<pre><code>$ /etc/rc.d/mdns restart</code></pre></li>
-<li><p><strong>Test</strong></p>
-<pre><code>$ getent hosts &lt;another mdns responding host on your lan&gt;.local
-$ ping &lt;another mdns responding host on your lan&gt;.local</code></pre></li>
-</ol>
+<p>The more I think about it, the more I get the feeling that we pay for today’s networks the wrong way. And that model, where everyone pays for an uplink, results in very little competition at the link layer (Comcast, Verizon, etc). It’s tempting to blame the infrastructure itself, especially the last mile, but I think the real problem is lack of true end-to-end.</p>
+<p>We don’t have true end-to-end because end users rarely have anything to offer except money for services rendered.</p>
+<p>But in fact, they do have something to offer. Compute cycles and storage. Enough of it to warrant a settlement-free arrangement. If the tools could support it, we could transition to a free access Internet. You pay your way by supplying compute, storage and electricity. We just need the tools to do this reliably, securely and with accountability.</p>
+<p>So how do you get both an entrenched public and the near-monopoly telecom onboard? Start with smaller ISPs and rural networks.</p>
+<p>If this sort of bidirectional metering/settlement free arrangement works, these small fries can grow into AWS competitors on the cheap. That frees capital to move into markets where the big guys reign…with a better product and service–for free–than your $70/month buys. The trick is generating enough demand to deal with an explosion in online compute and storage supply, also increasing bandwidth demand. People settle for 1-10 Mbps because it costs an arm and a leg to even see what 75 Mbps to 1 Gbps can do. However, if bandwidth balances with end user supplied compute and storage, lots more room to explore your options.</p>
+<p>Admittedly, this whole idea is half-baked and sorely lacking in numbers (rough worked example <a href="https://twitter.com/prezcannady/status/753356018655035392">here</a>).</p>
+<p>But it’s worth a jaw bone or two.</p>
 
 
 <div id="disqus_thread"></div>
@@ -57,8 +51,8 @@ $ ping &lt;another mdns responding host on your lan&gt;.local</code></pre></li>
      */
     
     var disqus_config = function () {
-        this.page.url = '/posts/2016-06-27-mdns-on-netbsd.html';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'posts/2016-06-27-mdns-on-netbsd.markdown'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = '/posts/2016-07-13-free-internet.html';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'posts/2016-07-13-free-internet.markdown'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
     
     (function() {  // DON'T EDIT BELOW THIS LINE
