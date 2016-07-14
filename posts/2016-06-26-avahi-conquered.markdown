@@ -1,5 +1,6 @@
 ---
 title: Avahi Conquered: Configuring multicast DNS in FreeBSD
+socialCard: https://revprez.github.io/images/avahi-freebsd.png
 ---
 
 `/etc/hosts` is for losers. [Zeroconf](https://en.wikipedia.org/wiki/Zero-configuration_networking) is your friend.  It's fine when it works out of the box.  It sucks when it doesn't, especially if you have no idea what Zeroconf is, or what [Bonjour (specifically mDNSResponder)](https://en.wikipedia.org/wiki/Bonjour_(software)) does, or you've never heard of Avahi.
@@ -57,3 +58,17 @@ PING <some machine on your LAN>.local (<its addy>): 56 data bytes
 64 bytes from <its addy>: icmp_seq=2 ttl=64 time=2.652 ms
 64 bytes from <its addy>: icmp_seq=3 ttl=64 time=85.265 ms
 ```
+
+<figure>
+<a 
+    class="example-image-link"
+    href="/images/avahi-freebsd.png"
+    data-lightbox="image-1">
+<img 
+    src="/images/avahi-freebsd.png" 
+    alt="chuckle"
+    width="476"
+    height="383"
+/>
+</a>
+</figure>

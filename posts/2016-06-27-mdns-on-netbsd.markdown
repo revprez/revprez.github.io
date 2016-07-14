@@ -1,5 +1,6 @@
 ---
 title: mDNS on a fresh NetBSD 7.0.1 install
+socialCard: https://revprez.github.io/images/mdns-netbsd.png
 ---
 
 
@@ -27,3 +28,17 @@ Assuming you've just installed NetBSD for the first time, log in as root and
     $ getent hosts <another mdns responding host on your lan>.local
     $ ping <another mdns responding host on your lan>.local
     ```
+
+<figure>
+<a 
+    class="example-image-link"
+    href="/images/mdns-netbsd.png"
+    data-lightbox="image-1">
+<img 
+    src="/images/mdns-netbsd.png" 
+    alt="mdns works"
+    width="476"
+    height="383"
+/>
+</a>
+</figure>
