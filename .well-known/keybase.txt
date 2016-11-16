@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/revprez
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://revprez.github.io
+  * I am revprez (https://keybase.io/revprez) on keybase.
+  * I have a public key ASAZadO167vuRoKmZSsua39ONUDh4678Es3N7JZuAF4ZNwo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101538442d4fc64207233132c3e4be6b5e0fe463b482ac7f701c5c47232b52ba00e0a",
+            "host": "keybase.io",
+            "kid": "01201969d3b5ebbbee4682a6652b2e6b7f4e3540e1e3aefc12cdcdec966e005e19370a",
+            "uid": "fb4cb7d7985ed5be23774e31f8a2e819",
+            "username": "revprez"
+        },
+        "service": {
+            "hostname": "revprez.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.18"
+    },
+    "ctime": 1479311657,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1479311620,
+        "hash": "15fb30d05e7dceba3de5ec0a4998ef2edcbda0a1154c37605bc94e32a4265b3cec66dcd2245d8674623437afa3dbf280358e69a334d2a0263037acf3d99c4a3c",
+        "seqno": 717172
+    },
+    "prev": "452639729b4f0baa3d1b5aa73c5c5c02c6a3da3c2cec87188f57b3322a13d0f3",
+    "seqno": 11,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgGWnTteu77kaCpmUrLmt/TjVA4eOu/BLNzeyWbgBeGTcKp3BheWxvYWTFAvl7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxNTM4NDQyZDRmYzY0MjA3MjMzMTMyYzNlNGJlNmI1ZTBmZTQ2M2I0ODJhYzdmNzAxYzVjNDcyMzJiNTJiYTAwZTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMTk2OWQzYjVlYmJiZWU0NjgyYTY2NTJiMmU2YjdmNGUzNTQwZTFlM2FlZmMxMmNkY2RlYzk2NmUwMDVlMTkzNzBhIiwidWlkIjoiZmI0Y2I3ZDc5ODVlZDViZTIzNzc0ZTMxZjhhMmU4MTkiLCJ1c2VybmFtZSI6InJldnByZXoifSwic2VydmljZSI6eyJob3N0bmFtZSI6InJldnByZXouZ2l0aHViLmlvIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTgifSwiY3RpbWUiOjE0NzkzMTE2NTcsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ3OTMxMTYyMCwiaGFzaCI6IjE1ZmIzMGQwNWU3ZGNlYmEzZGU1ZWMwYTQ5OThlZjJlZGNiZGEwYTExNTRjMzc2MDViYzk0ZTMyYTQyNjViM2NlYzY2ZGNkMjI0NWQ4Njc0NjIzNDM3YWZhM2RiZjI4MDM1OGU2OWEzMzRkMmEwMjYzMDM3YWNmM2Q5OWM0YTNjIiwic2Vxbm8iOjcxNzE3Mn0sInByZXYiOiI0NTI2Mzk3MjliNGYwYmFhM2QxYjVhYTczYzVjNWMwMmM2YTNkYTNjMmNlYzg3MTg4ZjU3YjMzMjJhMTNkMGYzIiwic2Vxbm8iOjExLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQLkDw9wGGO9ySFEGchRR0Bz5xMppCjRdBBOxVDmO3FI0boScdVbpHXA9ou/vNNBiliGpgGZRvy4AZK1Frhfb0wOoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCCuvARuquJWcow6GtqPD+5GYuZMaw2Cz755eKzNxRp2y6N0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/revprez
+
+==================================================================
