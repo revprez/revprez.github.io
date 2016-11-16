@@ -1,18 +1,9 @@
-
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
---------------------------------------------------------------------------------
-import qualified Data.ByteString.Lazy.Char8 as C
-import           Text.Jasmine
 
--- | Create a JavaScript compiler that minifies the content
-compressJsCompiler :: Compiler (Item String)
-compressJsCompiler = do
-    let minifyJS = C.unpack . minify . C.pack . itemBody
-    s <- getResourceString
-    return $ itemSetBody (minifyJS s) s
+
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -24,15 +15,10 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match "js/*" $ do
-        route   idRoute
-        compile compressJsCompiler
-
-
     match (fromList ["about.rst", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= loadAndApplyTemplate "templates/default.html" extendedDefaultCtx
             >>= relativizeUrls
 
     match "posts/*" $ do
@@ -49,11 +35,10 @@ main = hakyll $ do
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
-                    defaultContext
+                    extendedDefaultCtx
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/archive.html" socialCardCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
@@ -65,7 +50,7 @@ main = hakyll $ do
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Home"                `mappend`
-                    defaultContext
+                    extendedDefaultCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -79,9 +64,9 @@ main = hakyll $ do
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
+    extendedDefaultCtx
 
-socialCardCtx :: Context String
-socialCardCtx =
+extendedDefaultCtx :: Context String
+extendedDefaultCtx =
     titleField "socialCard" `mappend`
     defaultContext
