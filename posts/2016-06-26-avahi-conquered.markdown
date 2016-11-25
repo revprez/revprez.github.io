@@ -23,7 +23,7 @@ $ pkg install hal dbus avahi avahi-app avahi-libdns avahi-autoipd
 ...
 
 $ sysrc dbus_enable=YES          
-$ sysrc hal_enable=YES
+$ sysrc hald_enable=YES
 $ sysrc avahi_daemon_enable=YES
 
 ```
