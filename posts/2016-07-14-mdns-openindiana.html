@@ -39,7 +39,7 @@
 </div>
 
 <figure>
-<a class="example-image-link" href="../images/mdns-indiana.png" data-lightbox="image-1"> <img src="../images/mdns-indiana.png" alt="mDNS works in Solaris 11" width="497" height="324" /> </a>
+<a class="example-image-link" href="../images/mdns-indiana.png" data-lightbox="image-1"> <img src="../images/mdns-indiana.png" alt="mDNS works in Hipster 2016.04" width="497" height="324" /> </a>
 </figure>
 <p>OpenIndiana is a descendant of <a href>Illumos</a>, itself a fork of <a href>OpenSolaris</a>. Not sure if their package and control systems were convergent at some point (it’s been a long time since I’ve touched SunOS), but configuring mDNS was considerably different from <a href="2016-07-14-mdns-solaris.html">Solaris 11</a>. Like Solaris 11, mDNS is not enabled by default. There are fewer steps, but unfortunately what <a href="http://www.machine-unix.com/mdns-on-openindiana-151a/">little documentation exists</a> is scattered, makes a lot of assumptions and is sorely out of date.</p>
 <p>I’m running Hipster 2016.04. Assuming a fresh install:</p>
@@ -56,7 +56,12 @@ online         21:53:00 svc:/network/dns/multicast:default</code></pre></li>
 <li><p>Let’s enable multicast and start the service</p>
 <pre><code>$ sudo svcadm enable multicast
 $ sudo svcadm restart multicast</code></pre></li>
-<li><p>And finally, let’s test it out.</p></li>
+<li><p>And finally, let’s test it out.</p>
+<pre><code>$ getent hosts ticonderoga.local
+10.0.40.101 ticonderoga.local.
+
+$ ping ticonderoga.local
+ticonderoga.local is alive</code></pre></li>
 </ol>
 
 
