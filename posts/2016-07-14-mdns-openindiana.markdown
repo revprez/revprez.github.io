@@ -10,7 +10,7 @@ socialCard: https://revprez.github.io/images/mdns-indiana.png
     data-lightbox="image-1">
 <img 
     src="/images/mdns-indiana.png" 
-    alt="mDNS works in Solaris 11"
+    alt="mDNS works in Hipster 2016.04"
     width="497"
     height="324"
 />
@@ -47,4 +47,12 @@ I'm running Hipster 2016.04.  Assuming a fresh install:
 
 
 1. And finally, let's test it out.
+    ```
+    $ getent hosts ticonderoga.local
+    10.0.40.101 ticonderoga.local.
+
+    $ ping ticonderoga.local
+    ticonderoga.local is alive
+    ```
+
 
