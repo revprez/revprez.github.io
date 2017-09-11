@@ -51,7 +51,10 @@ I had to add
 public resolver IPs to get this to work.
 
 ```bash
-$ local-unbound-setup 10.0.40.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220
+$ local-unbound-setup \
+    10.0.40.1 \
+    8.8.8.8 8.8.4.4 \
+    208.67.222.222 208.67.220.220
 $ service local_unbound onestart
 ```
 
