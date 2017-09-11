@@ -66,13 +66,19 @@ div.info {
   border-color: #fff;
   line-height: 0;
   border-radius: 10px;
-  transition: border-color 0.5s ease-out; 
+  transition: border-color 0.5s ease-out;
 }
 
 .example-image-link:hover {
     border-color: #4ae;
-    transition: none; 
+    transition: none;
 
+}
+
+.front {
+  padding: 0
+  margin: 0
+  text-align: left
 }
 
 figure {
