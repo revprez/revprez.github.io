@@ -71,7 +71,10 @@ $ <span class="kw">service</span> local_unbound_enable onerestart
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ping</span> google.com
 <span class="kw">ping</span>: cannot resolve google.com: Host name lookup failure</code></pre></div>
 <p>I had to add public resolver IPs to get this to work.</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">local-unbound-setup</span> 10.0.40.1 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">local-unbound-setup</span> \
+    10.0.40.1 \
+    8.8.8.8 8.8.4.4 \
+    208.67.222.222 208.67.220.220
 $ <span class="kw">service</span> local_unbound onestart</code></pre></div>
 <p>Your config should look like this now</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cat</span> /var/unbound/forward.conf
