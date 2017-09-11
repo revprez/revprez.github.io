@@ -2,8 +2,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
+import           System.FilePath               (takeBaseName)
 
-
+--------------------------------------------------------------------------------
+mainImage           = "revprez.jpg"
+mainDescription     = "This is where I web it up"
+archiveDescription  = "Post Archive"
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -15,11 +19,11 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
-        route   $ setExtension "html"
-        compile $ pandocCompiler
-            >>= loadAndApplyTemplate "templates/default.html" extendedDefaultCtx
-            >>= relativizeUrls
+    -- match (fromList ["about.rst", "contact.markdown"]) $ do
+    --     route   $ setExtension "html"
+    --     compile $ pandocCompiler
+    --         >>= loadAndApplyTemplate "templates/default.html" defaultContext
+    --         >>= relativizeUrls
 
     match "posts/*" $ do
         route $ setExtension "html"
@@ -35,7 +39,9 @@ main = hakyll $ do
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
-                    extendedDefaultCtx
+                    constField "cover" mainImage             `mappend`
+                    constField "description" archiveDescription `mappend`
+                    defaultContext
 
             makeItem ""
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
@@ -50,7 +56,9 @@ main = hakyll $ do
             let indexCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Home"                `mappend`
-                    extendedDefaultCtx
+                    constField "cover" mainImage             `mappend`
+                    constField "description" mainDescription `mappend`
+                    defaultContext
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -64,9 +72,24 @@ main = hakyll $ do
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
-    extendedDefaultCtx
-
-extendedDefaultCtx :: Context String
-extendedDefaultCtx =
-    titleField "socialCard" `mappend`
     defaultContext
+
+twitterImageField :: String -> Context a
+twitterImageField = mapContext takeBaseName . pathField
+
+twitterTextField :: String -> Context a
+twitterTextField = mapContext takeBaseName . pathField
+
+twitterContext :: Context String
+twitterContext =
+    twitterImageField "cover"       `mappend`
+    twitterTextField  "description" `mappend`
+    missingField
+
+-- descriptionField :: String -> Context a
+-- descriptionField = mapContext takeBaseName . pathField
+--
+-- descriptionContext :: Context String
+-- descriptionContext =
+--     descriptionField "description" `mappend`
+--     missingField

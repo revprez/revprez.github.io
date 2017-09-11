@@ -1,6 +1,7 @@
 ---
 title: mDNS on a fresh NetBSD 7.0.1 install
-socialCard: https://revprez.github.io/images/mdns-netbsd.png
+cover: mdns-netbsd.png
+description: Resolving hostnames on your local network on NetBSD
 ---
 
 
@@ -10,7 +11,7 @@ Assuming you've just installed NetBSD for the first time, log in as root and
 
 1. **Enable the multicast and unicast DNS daemon: [mdnsd(8)](http://netbsd.gw.com/cgi-bin/man-cgi?mdnsd++NetBSD-current)**
     ```
-    $ echo "mdnsd=YES" >> /etc/rc.conf 
+    $ echo "mdnsd=YES" >> /etc/rc.conf
     ```
 
 1. **Add a source named "msdnsd" to the hosts database in [nsswitch.conf(5)](http://netbsd.gw.com/cgi-bin/man-cgi?nsswitch.conf++NetBSD-current)**
@@ -30,12 +31,12 @@ Assuming you've just installed NetBSD for the first time, log in as root and
     ```
 
 <figure>
-<a 
+<a
     class="example-image-link"
     href="/images/mdns-netbsd.png"
     data-lightbox="image-1">
-<img 
-    src="/images/mdns-netbsd.png" 
+<img
+    src="/images/mdns-netbsd.png"
     alt="mdns works"
     width="476"
     height="383"

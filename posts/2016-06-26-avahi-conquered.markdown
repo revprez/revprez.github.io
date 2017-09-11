@@ -1,6 +1,7 @@
 ---
 title: Avahi Conquered: Configuring multicast DNS in FreeBSD
-socialCard: https://revprez.github.io/images/avahi-freebsd.png
+cover: avahi-freebsd.png
+description: Resolving hostnames on your local network on FreeBSD 10.3
 ---
 
 `/etc/hosts` is for losers. [Zeroconf](https://en.wikipedia.org/wiki/Zero-configuration_networking) is your friend.  It's fine when it works out of the box.  It sucks when it doesn't, especially if you have no idea what Zeroconf is, or what [Bonjour (specifically mDNSResponder)](https://en.wikipedia.org/wiki/Bonjour_(software)) does, or you've never heard of Avahi.
@@ -22,7 +23,7 @@ $ pkg install hal dbus avahi avahi-app avahi-libdns avahi-autoipd nss_mdns
 
 ...
 
-$ sysrc dbus_enable=YES          
+$ sysrc dbus_enable=YES
 $ sysrc hald_enable=YES
 $ sysrc avahi_daemon_enable=YES
 
@@ -60,12 +61,12 @@ PING <some machine on your LAN>.local (<its addy>): 56 data bytes
 ```
 
 <figure>
-<a 
+<a
     class="example-image-link"
     href="/images/avahi-freebsd.png"
     data-lightbox="image-1">
-<img 
-    src="/images/avahi-freebsd.png" 
+<img
+    src="/images/avahi-freebsd.png"
     alt="chuckle"
     width="476"
     height="383"

@@ -1,15 +1,16 @@
 ---
 title: Configuring mDNS for Solaris
-socialCard: https://revprez.github.io/images/mdns-indiana.png
+cover: mdns-indiana.png
+description: Resolving hostnames on your local network on Solaris 11
 ---
 
 <figure>
-<a 
+<a
     class="example-image-link"
     href="/images/mdns-solaris-02.png"
     data-lightbox="image-1">
-<img 
-    src="/images/mdns-solaris-02.png" 
+<img
+    src="/images/mdns-solaris-02.png"
     alt="mDNS works in Solaris 11"
     width="497"
     height="324"
@@ -28,7 +29,7 @@ Configuring mDNS for Solaris is pretty [straight forward and well documented](ht
     ```
     $ /usr/sbin/svccfg -s svc:/system/name-service/switch
 
-    ... 
+    ...
 
     svc:/system/name-service/switch> setprop config/host = astring: "files dns mdns"
     svc:/system/name-service/switch> select system/name-service/switch:default

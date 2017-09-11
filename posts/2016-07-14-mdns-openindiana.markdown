@@ -1,15 +1,16 @@
 ---
 title: Configuring mDNS for OpenIndiana
-socialCard: https://revprez.github.io/images/mdns-indiana.png
+cover: mdns-indiana.png
+description: Resolving hostnames on your local network on OpenIndiana
 ---
 
 <figure>
-<a 
+<a
     class="example-image-link"
     href="/images/mdns-indiana.png"
     data-lightbox="image-1">
-<img 
-    src="/images/mdns-indiana.png" 
+<img
+    src="/images/mdns-indiana.png"
     alt="mDNS works in Hipster 2016.04"
     width="497"
     height="324"
@@ -54,5 +55,3 @@ I'm running Hipster 2016.04.  Assuming a fresh install:
     $ ping ticonderoga.local
     ticonderoga.local is alive
     ```
-
-

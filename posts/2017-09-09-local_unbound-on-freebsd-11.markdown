@@ -1,6 +1,7 @@
 ---
 title: Configuring local_unbound in FreeBSD 11
-socialCard: https://revprez.github.io/images/ping-20170909.png
+cover: local_unbound-freebsd.png
+description: Setting up a local caching and validating resolver on FreeBSD 11
 ---
 
 Not to be confused with [unbound](https://www.unbound.net/).
