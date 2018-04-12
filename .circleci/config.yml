@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/futtetennismo
+    working_directory: ~/revprez
   branches:
     only:
       - hakyll
