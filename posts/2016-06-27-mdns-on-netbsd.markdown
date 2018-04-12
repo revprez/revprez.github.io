@@ -21,7 +21,7 @@ Assuming you've just installed NetBSD for the first time, log in as root and
 
 1. **Restart [mdnsd(8)](http://netbsd.gw.com/cgi-bin/man-cgi?mdnsd++NetBSD-current)**
     ```
-    $ /etc/rc.d/mdns restart
+    $ /etc/rc.d/mdnsd restart
     ```
 
 1. **Test**
