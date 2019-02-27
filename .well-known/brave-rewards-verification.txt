@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: revprez.github.io 
+Token: 6d81102e98de322868b13ac35af33498996c4da9a7720325c74c5824b68166fe
