@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/revprez
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://revprez.github.io
+  * I am revprez (https://keybase.io/revprez) on keybase.
+  * I have a public key ASCHQNI4L6P2zW-TxlF-F8vbBp_7BCwqFP_1MDSA7rTxxgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101538442d4fc64207233132c3e4be6b5e0fe463b482ac7f701c5c47232b52ba00e0a",
+      "host": "keybase.io",
+      "kid": "01208740d2382fa3f6cd6f93c6517e17cbdb069ffb042c2a14fff5303480eeb4f1c60a",
+      "uid": "fb4cb7d7985ed5be23774e31f8a2e819",
+      "username": "revprez"
+    },
+    "merkle_root": {
+      "ctime": 1633027250,
+      "hash": "de5ac402c1ad8a2d67363971bc3465fbf5e621fb504da852c9a4569a81c34ff2424dcffbfc55ec945f40b97f40e5ad2af4e9eda2fbd255dfca4070ebcb7e7342",
+      "hash_meta": "cbcad05935fef54deb5433eb6d30bc1e3ca188bef6fcdfd13b99775764336fbc",
+      "seqno": 20880458
+    },
+    "service": {
+      "entropy": "7tXIefJDW5Dzo9qYrcqdrUdJ",
+      "hostname": "revprez.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.8.0"
+  },
+  "ctime": 1633027326,
+  "expire_in": 504576000,
+  "prev": "722aaa1f447c678550cd50f81d6aebe25b123f485c6b0ce60d6815d0b4960400",
+  "seqno": 40,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgh0DSOC+j9s1vk8ZRfhfL2waf+wQsKhT/9TA0gO608cYKp3BheWxvYWTESpcCKMQgciqqH0R8Z4VQzVD4HWrr4lsSP0hcawzmDWgV0LSWBADEIDWRoLQSldO28RPGNp09xwRBWIlcPlxpY1EEafnxixX8AgHCo3NpZ8RAocpTjYSLY+snpfkWR+NefJD9q5TngsI3d8vJlDSeyeD+a9ZMLpwpF3hp5AfOzxPNnojQfOWHJJkTcqYpODpOAqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIOK0whRLxN3nMWGOTdy3BICBr9oYMkxgEXKkCU4nlgoQo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/revprez
+
+==================================================================
