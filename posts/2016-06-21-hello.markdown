@@ -1,0 +1,22 @@
+---
+title: Welcome
+cover: straightouttapdp11.jpg
+description: Test
+---
+Nothing much to say yet. Just having fun with [Hakyll](https://jaspervdj.be/hakyll/)
+
+<figure>
+<a
+    class="example-image-link"
+    href="/images/straightouttapdp11.jpg"
+    data-lightbox="image-1"
+    data-title="chuckle">
+<img
+    src="/images/straightouttapdp11.jpg"
+    alt="chuckle"
+    width="476"
+    height="476"
+/>
+</a>
+<figcaption>chuckle</a></figcaption>
+</figure>

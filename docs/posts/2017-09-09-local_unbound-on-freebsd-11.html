@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Prez Cannady - Configuring local_unbound in FreeBSD 11</title>
+
+
+        <link rel="stylesheet" type="text/css" href="../css/lightbox.css">
+        <link rel="stylesheet" type="text/css" href="../css/default.css" />
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@prezcannady">
+        <meta name="twitter:creator" content="@prezcannady">
+        <meta name="twitter:title" content="Configuring local_unbound in FreeBSD 11">
+        <meta name="twitter:description" content="Setting up a local caching and validating resolver on FreeBSD 11">
+        <meta name="twitter:image" content="https://revprez.github.io/images/local_unbound-freebsd.png">
+        <meta name="google-site-verification" content="X_nXzgeyp6q2LhLzImSIXp6JXTQuDQPasJcDZzurO_E" />
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                <a href="../">Prez Cannady</a>
+            </div>
+            <div id="navigation">
+                <a href="../">Home</a>
+                <!-- <a href="/about.html">About</a> -->
+                <!-- <a href="/contact.html">Contact</a> -->
+                <a href="../archive.html">Archive</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <h1>Configuring local_unbound in FreeBSD 11</h1>
+
+            <div class="info">
+    Posted on September  9, 2017
+    
+</div>
+
+<p>Not to be confused with <a href="https://www.unbound.net/">unbound</a>.</p>
+<h2 id="why-local_unbound">Why local_unbound?</h2>
+<ol type="1">
+<li>I’m starting to use <a href>FreeBSD</a> and <a href>OpenBSD</a> more frequently, both for server stuff and to experience desktop life outside of the Linux-Windows-OSX trifecta. And I just want to know more about the system I’m using.</li>
+<li>I want to cache results from DNS queries to improve home LAN performance and reliability.</li>
+<li>I want greater visibility into query validation</li>
+<li>I want to experiment more with <a href="https://www.unbound.net/documentation/howto_anchor.html">DNSSEC</a></li>
+<li>I want to use free resolvers (think OpenDNS) without being a prick about it.</li>
+</ol>
+<p>I have a spare <a href="http://www.dell.com/en-us/shop/cty/pdp/spd/inspiron-3050-micro-desktop">Dell Inspiron Micro</a> I’ll eventually use for <a href="https://itso.dk/?p=499"><code>unbound</code></a> some time later, but for now we’ll just play with FreeBSD’s built in offering.</p>
+<h2 id="setup">Setup</h2>
+<p>This is simple, but surprisingly no one has put all the steps in one place yet. That and simply enabling <code>local_unbound</code> on installation (as of <code>10.3</code> and up) left me in a state where I couldn’t resolve any hosts. A couple of assumptions:</p>
+<ol type="1">
+<li>You’re configured only for IPv4. Haven’t gotten around to messing with IPv6 in FreeBSD yet</li>
+<li>You’re taking your address via DHCP.</li>
+<li>You skipped setting up <code>local_unbound</code> during installation. If you didn’t, then your pretty much only your output won’t match. Nothing serious, just don’t be surprised if you don’t see things I’m reporting.</li>
+</ol>
+<p>Here’s what I did to get in working condition:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> su <span class="at">-</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sysrc local_unbound_enable=YES</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> service local_unbound_enable onerestart</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/var/unbound/lan-zones.conf</span> not modified</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">/var/unbound/control.conf</span> not modified</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/var/unbound/unbound.conf</span> not modified</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Stopping</span> local_unbound.</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Starting</span> local_unbound.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Waiting</span> for nameserver to start... good</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/resolvconf.conf</span> not modified</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/resolv.conf</span> not modified</span></code></pre></div>
+<p>This is the weird part. I typically take DNS from my most immediate router, let’s call it <code>10.0.40.1</code>. However, leaving <code>local_unbound</code> to operate off this forward address alone left me unable to resolve any names.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ping google.com</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ping:</span> cannot resolve google.com: Host name lookup failure</span></code></pre></div>
+<p>I had to add public resolver IPs to get this to work.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> local-unbound-setup <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    10.0.40.1 <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    8.8.8.8 8.8.4.4 <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    208.67.222.222 208.67.220.220</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> service local_unbound onestart</span></code></pre></div>
+<p>Your config should look like this now</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat /var/unbound/forward.conf</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This file was generated by local-unbound-setup.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Modifications will be overwritten.</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">forward-zone:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>	<span class="ex">name:</span> .</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>	<span class="ex">forward-addr:</span> 10.0.40.1</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>	<span class="ex">forward-addr:</span> 8.8.8.8</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>	<span class="ex">forward-addr:</span> 8.8.4.4</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>	<span class="ex">forward-addr:</span> 208.67.222.222</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>	<span class="ex">forward-addr:</span> 208.67.220.220</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat /etc/resolvconf.conf</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># This file was generated by local-unbound-setup.</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Modifications will be overwritten.</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="va">resolv_conf</span><span class="op">=</span><span class="st">&quot;/dev/null&quot;</span> <span class="co"># prevent updating /etc/resolv.conf</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Static DNS configuration</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat /etc/resolvconf.conf</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># This file was generated by local-unbound-setup.</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Modifications will be overwritten.</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="va">resolv_conf</span><span class="op">=</span><span class="st">&quot;/dev/null&quot;</span> <span class="co"># prevent updating /etc/resolv.conf</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Static DNS configuration</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="ex">[root@apollo</span> ~]# ^C</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ex">[root@apollo</span> ~]# cat /etc/resolv.conf</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Generated by resolvconf</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># nameserver 10.0.40.1</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="ex">options</span> edns0</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ex">nameserver</span> 127.0.0.1</span></code></pre></div>
+<p>And of course, you should get what you came here for:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># local</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> getent hosts ticonderoga.local</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">fe80::1816:e3d3:6f48:e5f6</span>  ticonderoga.local</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">10.0.40.101</span>       ticonderoga.local</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># world</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> getent hosts google.com</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">2607:f8b0:4006:801::200e</span>  google.com</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">172.217.9.238</span>     google.com</span></code></pre></div>
+
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    var disqus_config = function () {
+        this.page.url = 'https://revprez.github.io/posts/2017-09-09-local_unbound-on-freebsd-11.html';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '/posts/2017-09-09-local_unbound-on-freebsd-11.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = 'https://revprez.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+        <div id="footer">
+            Site proudly generated by
+            <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+        </div>
+
+
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-79998828-1', 'auto');
+          ga('send', 'pageview');
+        </script>
+
+        <script id="lightbox2" src="../js/lightbox-plus-jquery.js"></script>
+
+        <script id="dsq-count-scr" src="//revprez.disqus.com/count.js" async></script>
+    </body>
+</html>
